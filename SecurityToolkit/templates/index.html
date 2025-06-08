@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Toolkit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> Security Toolkit</h1>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main menu -->
+        {% if menu == "main" %}
+        <div class="menu-section">
+            <h2>Main Menu</h2>
+            <div class="menu-options">
+                <a href="{{ url_for('port_scanning_menu') }}" class="menu-option">
+                    <i class="fas fa-network-wired"></i>
+                    <span>1. Port Scanning & Vulnerability Assessment</span>
+                </a>
+                <a href="{{ url_for('traffic_analysis_menu') }}" class="menu-option">
+                    <i class="fas fa-traffic-light"></i>
+                    <span>2. Network Traffic Analysis</span>
+                </a>
+                <a href="{{ url_for('penetration_testing_menu') }}" class="menu-option">
+                    <i class="fas fa-bug"></i>
+                    <span>3. Penetration Testing</span>
+                </a>
+                <a href="{{ url_for('system_protection_menu') }}" class="menu-option">
+                    <i class="fas fa-shield-virus"></i>
+                    <span>4. System Protection</span>
+                </a>
+                <a href="{{ url_for('web_traffic_menu') }}" class="menu-option">
+                    <i class="fas fa-globe"></i>
+                    <span>5. Web Traffic Monitoring</span>
+                </a>
+                <a href="{{ url_for('generate_report') }}" class="menu-option">
+                    <i class="fas fa-file-alt"></i>
+                    <span>6. Generate Security Reports</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Port Scanning -->
+        {% elif menu == "port_scanning" %}
+        <div class="menu-section">
+            <h2><i class="fas fa-network-wired"></i> Port Scanning</h2>
+            <a href="{{ url_for('main_menu') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</a>
+            
+            <form action="{{ url_for('run_quick_scan') }}" method="post" class="tool-form">
+                <h3>1. Quick Port Scan (Common ports)</h3>
+                <div class="form-group">
+                    <label for="target">Target:</label>
+                    <input type="text" id="target" name="target" placeholder="IP or hostname" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-search"></i> Run Quick Scan</button>
+            </form>
+
+            <form action="{{ url_for('run_full_scan') }}" method="post" class="tool-form">
+                <h3>2. Full Port Scan (All ports)</h3>
+                <div class="form-group">
+                    <label for="target">Target:</label>
+                    <input type="text" id="target" name="target" placeholder="IP or hostname" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-search"></i> Run Full Scan</button>
+            </form>
+
+            <form action="{{ url_for('run_comprehensive_scan') }}" method="post" class="tool-form">
+                <h3>3. Comprehensive Scan with Vulnerability Assessment</h3>
+                <div class="form-group">
+                    <label for="target">Target:</label>
+                    <input type="text" id="target" name="target" placeholder="IP or hostname" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-search"></i> Run Comprehensive Scan</button>
+            </form>
+
+            <form action="{{ url_for('run_custom_scan') }}" method="post" class="tool-form">
+                <h3>4. Custom Nmap Command</h3>
+                <div class="form-group">
+                    <label for="full_command">Complete Nmap Command:</label>
+                    <input type="text" id="full_command" name="full_command" placeholder="nmap -sV -p 80,443 192.168.1.1" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-terminal"></i> Execute Command</button>
+            </form>
+        </div>
+
+        <!-- Traffic Analysis -->
+        {% elif menu == "traffic_analysis" %}
+        <div class="menu-section">
+            <h2><i class="fas fa-traffic-light"></i> Traffic Analysis</h2>
+            <a href="{{ url_for('main_menu') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</a>
+            
+            <form action="{{ url_for('analyze_traffic') }}" method="post" class="tool-form">
+                <h3>1. Real-time Traffic Analyzer</h3>
+                <button type="submit" class="btn"><i class="fas fa-play"></i> Start Analysis</button>
+            </form>
+        
+            <form action="{{ url_for('anti_brute_force') }}" method="post" class="tool-form">
+                <h3>2. Brute Force Detection</h3>
+                <button type="submit" class="btn"><i class="fas fa-shield-alt"></i> Start Detection</button>
+            </form>
+        
+            <form action="{{ url_for('stop_analysis') }}" method="post" class="tool-form">
+                <h3>3. Stop Analysis</h3>
+                <button type="submit" class="btn"><i class="fas fa-stop"></i> Stop All Analysis</button>
+            </form>
+        </div>
+
+        <!-- Penetration Testing -->
+        {% elif menu == "penetration_testing" %}
+        <div class="menu-section">
+            <h2><i class="fas fa-bug"></i> Penetration Testing</h2>
+            <a href="{{ url_for('main_menu') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</a>
+            
+            <form action="{{ url_for('test_website') }}" method="post" class="tool-form">
+                <h3>1. Test website vulnerabilities (SQLi/XSS)</h3>
+                <div class="form-group">
+                    <label for="url">Target URL:</label>
+                    <input type="url" id="url" name="url" placeholder="http://example.com" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-rocket"></i> Run Website Test</button>
+            </form>
+
+            <form action="{{ url_for('check_brute_force') }}" method="post" class="tool-form">
+                <h3>2. Check for brute force vulnerabilities</h3>
+                <div class="form-group">
+                    <label for="url">Login URL:</label>
+                    <input type="url" id="url" name="url" placeholder="http://example.com/login" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-rocket"></i> Run Brute Force Test</button>
+            </form>
+        </div>
+
+        <!-- System Protection -->
+        {% elif menu == "system_protection" %}
+        <div class="menu-section">
+            <h2><i class="fas fa-shield-virus"></i> System Protection</h2>
+            <a href="{{ url_for('main_menu') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</a>
+            
+            <form action="{{ url_for('block_ip') }}" method="post" class="tool-form">
+                <h3>1. Block suspicious IP</h3>
+                <div class="form-group">
+                    <label for="ip">IP Address:</label>
+                    <input type="text" id="ip" name="ip" placeholder="192.168.1.100" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-lock"></i> Block IP</button>
+            </form>
+
+            <form action="{{ url_for('unblock_ip') }}" method="post" class="tool-form">
+                <h3>2. Unblock IP</h3>
+                <div class="form-group">
+                    <label for="ip">IP Address:</label>
+                    <input type="text" id="ip" name="ip" placeholder="192.168.1.100" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-unlock"></i> Unblock IP</button>
+            </form>
+
+            <a href="{{ url_for('list_blocked_ips') }}" class="btn" style="margin-top: 1rem;">
+                <i class="fas fa-list"></i> List Blocked IPs
+            </a>
+        </div>
+
+        <!-- Web Traffic Monitoring -->
+        {% elif menu == "web_traffic" %}
+        <div class="menu-section">
+            <h2><i class="fas fa-globe"></i> Web Traffic Monitoring</h2>
+            <a href="{{ url_for('main_menu') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Menu</a>
+            
+            <form action="{{ url_for('deep_content_analysis') }}" method="post" class="tool-form">
+                <h3>1. App Layer Analysis (SQL & XSS)</h3>
+                <div class="form-group">
+                    <label for="url">Target URL:</label>
+                    <input type="url" id="url" name="url" placeholder="http://example.com" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-search"></i> Analyze Content</button>
+            </form>
+
+            <form action="{{ url_for('perform_web_scraping') }}" method="post" class="tool-form">
+                <h3>2. Perform web scraping</h3>
+                <div class="form-group">
+                    <label for="url">Target URL:</label>
+                    <input type="url" id="url" name="url" placeholder="http://example.com" required>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-download"></i> Scrape Website</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+<!-- Reference: [26] -->

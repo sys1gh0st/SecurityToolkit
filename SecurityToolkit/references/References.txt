@@ -1,0 +1,29 @@
+References:
+
+[1] https://flask.palletsprojects.com/en/stable/
+[2] https://stackoverflow.com/questions/68285731/app-route-and-template-render-not-working-in-flask
+[3] https://stackoverflow.com/questions/6174691/sql-injection-detection-have-compiled-regexes-looking-for-test-injections
+[4] https://github.com/Anyel-ec/Python-Projects-To-Practique/blob/main/Nmap_Scanner.py
+[5] https://docs.python.org/3/library/subprocess.html
+[6] https://linux.die.net/man/8/iptables
+[7] https://stackoverflow.com/questions/23402924/error-in-running-scapy-sniff-function
+[8] https://gist.github.com/zarzen/1de31629d5167ab197ca393b983ac277
+[9] https://stackoverflow.com/questions/40363986/how-to-make-threading-threads-start-call-a-method-other-than-run
+[10] https://docs.python.org/es/dev/library/threading.html
+[11] https://docs.python.org/3/library/threading.html
+[12] https://cybersphinix.medium.com/developing-a-basic-network-packet-sniffer-860ec12919da
+[13] https://stackoverflow.com/questions/48071598/parsing-through-html-with-beautifulsoup-in-python
+[14] https://github.com/nmmapper/python3-nmap
+[15] https://pypi.org/project/python-nmap/
+[16] https://stackoverflow.com/questions/10434599/get-the-data-received-in-a-flask-request
+[17] https://docs.python-requests.org/
+[18] https://scapy.readthedocs.io/en/latest/usage.html
+[19] https://scapy.readthedocs.io/
+[20] https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+[21] https://www.geeksforgeeks.org/using-python-environment-variables-with-python-dotenv/
+[22] https://docs.python.org/3/library/smtplib.html
+[23] https://mailtrap.io/blog/python-send-email-gmail/
+[24] https://pypi.org/project/fpdf/
+[25] https://pyfpdf.readthedocs.io/en/latest/reference/FPDF/index.html
+[26] https://www.w3schools.com/html/html_intro.asp
+[27] https://www.w3schools.com/CSSref/index.php
